@@ -88,7 +88,7 @@ function createCardMarkup(items) {
         .join('');
     
 }
-
+// Открытие модпльного окна
 const modal = document.querySelector('.js-lightbox');
 const modalImg = modal.querySelector('.lightbox__image');
 
@@ -98,11 +98,19 @@ function onGalleryContainerClick(event) {
   modal.classList.add("is-open");
   modalImg.setAttribute('src', url);
 }
-
+// Закрытие модального окна
 const closeBtn = document.querySelector('.lightbox__button');
-closeBtn.addEventListener('click', onCloseBtnClick);
-function onCloseBtnClick() {
+closeBtn.addEventListener('click', onCloseModal);
+function onCloseModal() {
   modal.classList.remove("is-open");
  modalImg.setAttribute('src', '');
  
+}
+// Закрытие модального окна по клику на бэкдроп
+const backdrop = document.querySelector('.lightbox__overlay');
+backdrop.addEventListener('click', onBackdropClick);
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    onCloseModal();
+  }
 }
