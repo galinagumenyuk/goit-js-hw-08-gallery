@@ -67,6 +67,7 @@ const galleryItems = [
 const galleryContainer = document.querySelector('.js-gallery');
 const cardsMarkup = createCardMarkup(galleryItems);
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
+galleryContainer.addEventListener('click', onGalleryContainerClick);
 
 function createCardMarkup(items) {
     return items.map(({ preview, original, description }) => {
@@ -86,4 +87,14 @@ function createCardMarkup(items) {
     })
         .join('');
     
+}
+function onGalleryContainerClick(event) {
+  if (!event.target.classList.contains('gallery__item')) {
+    return
+  }
+  console.log(event.target.dataset.sourse);
+  const modal = document.querySelector('.js-lightbox');
+  modal.classList.add("is-open");
+  const modalImg = document.querySelector('.lightbox__image');
+  modalImg.setAttribute('src', event.target.dataset.sourse);
 }
