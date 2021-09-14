@@ -102,9 +102,10 @@ function onGalleryContainerClick(event) {
 const closeBtn = document.querySelector('.lightbox__button');
 closeBtn.addEventListener('click', onCloseModal);
 function onCloseModal() {
+  window.removeEventListener('keydown', onEscKeyPress);
   modal.classList.remove("is-open");
  modalImg.setAttribute('src', '');
- 
+  window.addEventListener('keydown', onEscKeyPress);
 }
 // Закрытие модального окна по клику на бэкдроп
 const backdrop = document.querySelector('.lightbox__overlay');
@@ -113,4 +114,8 @@ function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     onCloseModal();
   }
+}
+// Закрытие модального окна по Esc
+function onEscKeyPress(event) {
+  onCloseModal();
 }
