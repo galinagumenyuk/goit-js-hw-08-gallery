@@ -115,7 +115,7 @@ function onBackdropClick(event) {
     onCloseModal();
   }
 }
-// Закрытие модального окна по Esc
+// Закрытие модального окна по Esc.
 function onEscKeyPress(event) {
   onCloseModal();
 }
