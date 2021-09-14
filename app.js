@@ -88,13 +88,21 @@ function createCardMarkup(items) {
         .join('');
     
 }
+
+const modal = document.querySelector('.js-lightbox');
+const modalImg = modal.querySelector('.lightbox__image');
+
 function onGalleryContainerClick(event) {
-  if (!event.target.classList.contains('gallery__item')) {
-    return
-  }
-  console.log(event.target.dataset.sourse);
-  const modal = document.querySelector('.js-lightbox');
+  event.preventDefault();
+  const url = event.target.dataset.source;
   modal.classList.add("is-open");
-  const modalImg = document.querySelector('.lightbox__image');
-  modalImg.setAttribute('src', event.target.dataset.sourse);
+  modalImg.setAttribute('src', url);
+}
+
+const closeBtn = document.querySelector('.lightbox__button');
+closeBtn.addEventListener('click', onCloseBtnClick);
+function onCloseBtnClick() {
+  modal.classList.remove("is-open");
+ modalImg.setAttribute('src', '');
+ 
 }
